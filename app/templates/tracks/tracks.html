@@ -1,0 +1,17 @@
+<% if ( count <= 0 ) { %>
+
+	<div class="result-heading">
+		<h1><span>No Results for</span> <%= query %></h1>
+	</div>
+
+<% } else { %>
+
+	<div class="result-heading">
+		<h1><span>Results for:</span> <%= query %> <span><% if(page!=0){ %>(<%= page %>)<% } %></span></h1>
+		<% if ( count <= 25 && count > 0 ) { %>
+			<a href="#" class="show-more btn">&raquo;</a> 
+		<% } %>
+	</div>
+
+<% } %>
+<ul class="tracks"></ul>
