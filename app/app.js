@@ -28,11 +28,6 @@ function($, _, Backbone) {
     page: 0
   };
 
-  // Initialize SoundCloud object
-  SC.initialize({
-    client_id: 'f652822b93b6a6799336b4a729d50de8'
-  });
-
   // Patch Model and Collection fetching to emit a `fetch` event.
   // http://tbranyen.com/post/how-to-indicate-backbone-fetch-progress
   _.each(["Model", "Collection"], function(name) {
