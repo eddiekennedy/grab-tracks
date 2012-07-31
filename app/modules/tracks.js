@@ -18,18 +18,6 @@ function(app) {
     model: Tracks.Model,
     
     parse: function(response) {
-      /*
-      var filteredResponse = _.filter( response, function( track ){
-        // Check downloadability
-        if ( track.downloadable == true ) {
-          if ( track.artwork_url ) {
-            // Replace default image artwork url with larger version
-            track.artwork_url = track.artwork_url.replace( "large", "t500x500");
-          } 
-        }
-        return track.downloadable == true;
-      });
-      */
       var filteredResponse = _.each( response, function( track ){
           if ( track.artwork_url ) {
             // Replace default image artwork url with larger version
@@ -71,8 +59,6 @@ function(app) {
     },
 
     initialize: function() {
-
-      //this.collection.on("all", this.render, this);
 
       this.collection.on("fetch", function() {
         console.log("FETCH")
