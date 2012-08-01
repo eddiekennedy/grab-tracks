@@ -60,6 +60,8 @@ function(app) {
 
     initialize: function() {
 
+      //this.collection.on("all", this.render, this);
+
       this.collection.on("fetch", function() {
         console.log("FETCH")
         this.$el.html('<div class="loading"><img src="/assets/images/loading.gif" /></div>');
