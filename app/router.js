@@ -13,9 +13,7 @@ function(app, Tracks, Search) {
 
     routes: {
       "": "index",
-      "tracks/:q": "getTracks",
-      "tracks/:q/:p": "getMoreTracks",
-      "user/:id/tracks": "userTracks"
+      "tracks/:query": "getTracks"
     },
 
     index: function() {
@@ -24,45 +22,20 @@ function(app, Tracks, Search) {
       }).render();
     },
 
-    getTracks: function(q) {
+    getTracks: function( query, page ) {
 
-      app.query = q;
-
-      this.tracks.url = [
-        app.apiRoot,
-        "/tracks.json",
-        "?client_id=" + app.clientId,
-        "&q=" + q,
-        "&filter=downloadable",
-        "&duration[to]=600000",
-        "&limit=1"
-      ].join("");
-
-      app.useLayout("base").setViews({
-        ".tracks": new Tracks.Views.List({
-          collection: this.tracks
-        }),
-        ".search-bar": new Search.Views.Main({}),
-      }).render();
-
-      this.tracks.fetch();
-
-    },
-
-    getMoreTracks: function(q, p) {
-
-      app.query = q;
-      app.page = p;
+      app.page = page || 1;
+      app.query = query;
 
       this.tracks.url = [
         app.apiRoot,
         "/tracks.json",
         "?client_id=" + app.clientId,
-        "&q=" + q,
+        "&q=" + app.query,
         "&filter=downloadable",
         "&duration[to]=600000",
-        "&limit=1",
-        "&offset=" + p
+        //"&limit=1",
+        "&offset=" + app.page
       ].join("");
 
       app.useLayout("base").setViews({
