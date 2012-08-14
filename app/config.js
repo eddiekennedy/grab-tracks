@@ -22,9 +22,6 @@ require.config({
       exports: "Backbone"
     },
 
-    // Twitter Bootstrap depends on jQuery.
-    "../assets/vendor/bootstrap/js/bootstrap": ["jquery"],
-
     // Backbone.LayoutManager depends on Backbone.
     "plugins/backbone.layoutmanager": ["backbone"]
   }

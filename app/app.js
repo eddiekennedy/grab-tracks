@@ -6,7 +6,6 @@ define([
 
   // Plugins.
   "plugins/backbone.layoutmanager",
-  "../assets/vendor/bootstrap/js/bootstrap",
 ],
 
 function($, _, Backbone) {
