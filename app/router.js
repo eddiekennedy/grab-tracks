@@ -14,6 +14,7 @@ function(app, Tracks, Search) {
     routes: {
       "": "index",
       "tracks/:query": "getTracks"
+      "tracks/:query/:page": "getTracks"
     },
 
     index: function() {
@@ -39,7 +40,7 @@ function(app, Tracks, Search) {
       ].join("");
 
       app.useLayout("base").setViews({
-        ".tracks": new Tracks.Views.List({
+        ".content": new Tracks.Views.List({
           collection: this.tracks
         }),
         ".search-bar": new Search.Views.Main({}),
