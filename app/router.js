@@ -13,7 +13,7 @@ function(app, Tracks, Search) {
 
     routes: {
       "": "index",
-      "tracks/:query": "getTracks"
+      "tracks/:query": "getTracks",
       "tracks/:query/:page": "getTracks"
     },
 
