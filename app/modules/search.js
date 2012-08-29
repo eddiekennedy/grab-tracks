@@ -32,7 +32,7 @@ function(app) {
 
       app.query = this.$("input").val();
       app.queryUrl = app.query.replace(" ", "+");
-      app.router.navigate("/tracks/" + app.queryUrl, true);
+      app.router.navigate( app.queryUrl, true);
     }
 
   });

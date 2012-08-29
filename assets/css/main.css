@@ -75,12 +75,12 @@ input {
 	padding-bottom: .7em;
 }
 .col-a {
-	width: 30%;
-	float:left;
+	xwidth: 30%;
+	xfloat:left;
 }
 .col-b {
-	width: 66%;
-	float:right;
+	xwidth: 66%;
+	xfloat:right;
 }
 .loading {
 	text-align: center;
