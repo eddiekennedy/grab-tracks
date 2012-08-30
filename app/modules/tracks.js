@@ -18,8 +18,6 @@ function(app) {
       app.page = this.get("indexNum");
       Tracks.DetailView.model.set("id", this.id);
 
-      console.log(app.page);
-      console.log(this)
       /*
       app.page = 1;
       Tracks.DetailView.setView(".feature-track", new Tracks.Views.FeaturedTrack({
@@ -72,8 +70,8 @@ function(app) {
 
     changeTrack: function(event) {
       event.preventDefault();
-      this.$el.addClass('active');
       this.model.changeTrack();
+      $(this.el).addClass('active');
       /*
       this.collection.reset();
       var nextPage = parseInt( app.page ) + 1;
