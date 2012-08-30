@@ -13,10 +13,19 @@ function(app) {
   Tracks.Model = Backbone.Model.extend({
 
     changeTrack: function() {
-      console.log("whoop", Tracks.DetailView)
+      //console.log("whoop", Tracks.DetailView)
+      //console.log("TVFT", Tracks.DetailView.model.set("id", this.id))
+      app.page = this.get("indexNum");
+      Tracks.DetailView.model.set("id", this.id);
+
+      console.log(app.page);
+      console.log(this)
+      /*
+      app.page = 1;
       Tracks.DetailView.setView(".feature-track", new Tracks.Views.FeaturedTrack({
         model: this
       })).render();
+*/
     }
 
   });
@@ -35,6 +44,7 @@ function(app) {
           } 
         return track;
       });
+      app.page = 0;
       return filteredResponse;
     }
   
@@ -62,6 +72,7 @@ function(app) {
 
     changeTrack: function(event) {
       event.preventDefault();
+      this.$el.addClass('active');
       this.model.changeTrack();
       /*
       this.collection.reset();
@@ -122,9 +133,10 @@ function(app) {
           model: item
         }));
         if( item.get("indexNum") === app.page ) {
-          Tracks.DetailView = this.insertView(".feature-track", new Tracks.Views.FeaturedTrack({
+          Tracks.DetailView = new Tracks.Views.FeaturedTrack({
             model: item
-          }));
+          });
+          this.insertView(".feature-track", Tracks.DetailView );
         }
       }, this);
 

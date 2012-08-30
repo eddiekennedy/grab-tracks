@@ -100,11 +100,17 @@ input {
 	float: none;
 }
 .tracks {
-
+	font-size: 1.2em;
 }
 .tracks li {
 	position: relative;
 	overflow: auto;
+}
+.tracks a {
+	opacity: .5;
+}
+.tracks .active a {
+	opacity: 1;
 }
 .user {
 	top: 15%;
