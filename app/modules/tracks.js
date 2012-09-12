@@ -127,6 +127,7 @@ function(app) {
     render: function(manage) {
 
       this.collection.each(function(item) {
+        console.log(item)
         this.insertView("ul.tracks.", new Tracks.Views.TrackMenu({
           model: item
         }));

@@ -11,6 +11,10 @@ function(app, Tracks, Search) {
   // Defining the application router, you can attach sub routers here.
   var Router = Backbone.Router.extend({
 
+    initialize: function() {
+      this.tracks = new Tracks.Collection();
+    },
+
     routes: {
       "": "index",
       ":query": "getTracks",
@@ -38,7 +42,7 @@ function(app, Tracks, Search) {
         //"&limit=1",
         "&offset=" + app.page
       ].join("");
-
+      
       app.useLayout("base").setViews({
         ".content": new Tracks.Views.List({
           collection: this.tracks
@@ -48,10 +52,6 @@ function(app, Tracks, Search) {
 
       this.tracks.fetch();
 
-    },
-
-    initialize: function() {
-      this.tracks = new Tracks.Collection();
     }
 
   });
