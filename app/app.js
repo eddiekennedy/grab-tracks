@@ -5,7 +5,7 @@ define([
   "backbone",
 
   // Plugins.
-  "plugins/backbone.layoutmanager",
+  "plugins/backbone.layoutmanager"
 ],
 
 function($, _, Backbone) {
@@ -44,27 +44,39 @@ function($, _, Backbone) {
       return fetch.apply(this, arguments);
     };
   });
-
+  
   // Localize or create a new JavaScript Template object.
   var JST = window.JST = window.JST || {};
 
   // Configure LayoutManager with Backbone Boilerplate defaults.
   Backbone.LayoutManager.configure({
+    // Allow LayoutManager to augment Backbone.View.prototype.
+    manage: true,
+
     paths: {
       layout: "app/templates/layouts/",
       template: "app/templates/"
     },
 
     fetch: function(path) {
+      // Initialize done for use in async-mode
+      var done;
+
+      // Concatenate the file extension.
       path = path + ".html";
 
-      if (!JST[path]) {
-        $.ajax({ url: "/" + path, async: false }).then(function(contents) {
-          JST[path] = _.template(contents);
+      // If cached, use the compiled template.
+      if (JST[path]) {
+        return JST[path];
+      } else {
+        // Put fetch into `async-mode`.
+        done = this.async();
+
+        // Seek out the template asynchronously.
+        return $.ajax({ url: app.root + path }).then(function(contents) {
+          done(JST[path] = _.template(contents));
         });
-      } 
-      
-      return JST[path];
+      }
     }
   });
 
@@ -75,8 +87,8 @@ function($, _, Backbone) {
       return _.extend({ Views: {} }, additionalProps);
     },
 
-    // Helper for specific layouts.
-    useLayout: function(name) {
+    // Helper for using layouts.
+    useLayout: function(name, options) {
       // If already using this Layout, then don't re-inject into the DOM.
       if (this.layout && this.layout.options.template === name) {
         return this.layout;
@@ -87,12 +99,12 @@ function($, _, Backbone) {
         this.layout.remove();
       }
 
-      // Create a new Layout.
-      var layout = new Backbone.Layout({
+      // Create a new Layout with options.
+      var layout = new Backbone.Layout(_.extend({
         template: name,
         className: "layout " + name,
         id: "layout"
-      });
+      }, options));
 
       // Insert into the DOM.
       $("#main").empty().append(layout.el);
@@ -100,10 +112,10 @@ function($, _, Backbone) {
       // Render the layout.
       layout.render();
 
-      // Cache the reference on the Router.
+      // Cache the refererence.
       this.layout = layout;
 
-      // Return the reference, for later usage.
+      // Return the reference, for chainability.
       return layout;
     }
   }, Backbone.Events);
