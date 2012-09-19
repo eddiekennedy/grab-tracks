@@ -9,30 +9,17 @@ function(app) {
   // Create a new module.
   var Search = app.module();
 
-  // Default model.
-  Search.Model = Backbone.Model.extend({
-  
-  });
+  Search.Views.SearchField = Backbone.View.extend({
 
-  // Default collection.
-  Search.Collection = Backbone.Model.extend({
-    model: Search.Model
-  });
-
-  Search.Views.Main = Backbone.View.extend({
-
-    template: "search/search",
+    template: "tracks/search",
 
     events: {
-      "submit form": "submit"
+      "submit form": "getTracks"
     },
 
-    submit: function(event) {
-      event.preventDefault();
-
-      app.query = this.$("input").val();
-      app.queryUrl = app.query.replace(" ", "+");
-      app.router.navigate( app.queryUrl, true);
+    getTracks: function(event) {
+      app.router.go("q", this.$(".query").val());
+      return false;
     }
 
   });

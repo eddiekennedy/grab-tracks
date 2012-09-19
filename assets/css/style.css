@@ -1,0 +1,54 @@
+#main {
+	width: 96%;
+	padding: 1em 2%;
+	margin: 0 auto;
+	max-width: 600px;
+}
+input {
+	width: 96%;
+	padding: .3em 2%;
+	border: 1px solid #ccc;
+}
+.loading {
+	text-align: center;
+	padding-top: 3em;
+}
+ul {
+	list-style: none;
+	padding: 0;
+	width: 100%;
+}
+li {
+	display: inline-block;
+	width: 3%;
+	margin-left: 1%;
+}
+.show-detail {
+	display: block;
+	width: 100%;
+	height: 20px;
+	background: #ccc;
+}
+.show-detail:hover {
+	background: #bbb;
+}
+.active .show-detail {
+	background: #666;
+}
+.artwork {
+	width: 100%;
+}
+.detail {
+	position: relative;
+}
+.player {
+	position: absolute;
+	top: 3%;
+	width: 96%;
+	padding: 2%;
+	background: rgba(0,0,0, .7);
+	opacity: .2;
+}
+.detail:hover .player {
+	opacity: 1;
+}

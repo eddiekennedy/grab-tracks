@@ -1,56 +1,84 @@
 define([
   // Application.
   "app",
+
   // Modules
-  //"modules/users",
   "modules/tracks",
   "modules/search"
 ],
 
 function(app, Tracks, Search) {
+
   // Defining the application router, you can attach sub routers here.
   var Router = Backbone.Router.extend({
-
-    initialize: function() {
-      this.tracks = new Tracks.Collection();
-    },
-
+    
     routes: {
+
       "": "index",
-      ":query": "getTracks",
-      ":query/:page": "getTracks"
+      "q/:query": "tracks",
+      "q/:query/:page": "tracks",
+      "u/:query": "tracks"
+
     },
 
     index: function() {
-      app.useLayout("base").setViews({
-        ".search-bar": new Search.Views.Main({})
-      }).render();
+
+      this.reset();
+
+      // Use the main layout.
+      app.useLayout("main").render();
+
     },
 
-    getTracks: function( query, page ) {
+    tracks: function( query, page ) {
 
-      app.page = page || 1;
-      app.query = query;
+      // Reset to initial state.
+      this.reset();
+      // Set query
+      this.tracks.query = query;
+      // Set page
+      this.tracks.page = page || 0;
+      // Fetch Data
+      this.tracks.fetch({
+        error: function() {
+          app.problem();
+        }
+      });
 
-      this.tracks.url = [
-        app.apiRoot,
-        "/tracks.json",
-        "?client_id=" + app.clientId,
-        "&q=" + app.query,
-        "&filter=downloadable",
-        "&duration[to]=600000",
-        //"&limit=1",
-        "&offset=" + app.page
-      ].join("");
+    },
+
+    reset: function() {
+
+      // Reset collections to initial state.
+      if ( this.tracks.length ) {
+        this.tracks.reset();
+      };
+
+      // Reset active model.
+      app.active = false;
+      //this.commits.repo = false;
+
+    },
+
+    // Shortcut for building a url.
+    go: function() {
+      return this.navigate(_.toArray(arguments).join("/"), true);
+    },
+
+    initialize: function() {
+
+      // Set up the tracks.
+      this.tracks = new Tracks.Collection();
+
+      // Use main layout and set Views.
+      app.useLayout("main");
       
-      app.useLayout("base").setViews({
-        ".content": new Tracks.Views.List({
+      app.layout.setViews({
+        ".tracks": new Tracks.Views.List({
           collection: this.tracks
         }),
-        ".search-bar": new Search.Views.Main({}),
-      }).render();
-
-      this.tracks.fetch();
+        ".search": new Search.Views.SearchField()
+      });
 
     }
 
