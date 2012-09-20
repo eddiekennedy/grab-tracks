@@ -16,8 +16,7 @@ function(app, Tracks, Search) {
 
       "": "index",
       "q/:query": "tracks",
-      "q/:query/:page": "tracks",
-      "u/:query": "tracks"
+      "q/:query/:page": "tracks"
 
     },
 
