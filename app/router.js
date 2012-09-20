@@ -34,7 +34,7 @@ function(app, Tracks, Search) {
       // Reset to initial state.
       this.reset();
       // Set query
-      this.tracks.query = query;
+      app.query = query;
       // Set page
       this.tracks.page = page || 0;
       // Fetch Data
@@ -55,6 +55,7 @@ function(app, Tracks, Search) {
 
       // Reset active model.
       app.active = false;
+      app.query = false;
       //this.commits.repo = false;
 
     },

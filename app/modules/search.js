@@ -13,6 +13,21 @@ function(app) {
 
     template: "tracks/search",
 
+    initialize: function() {
+      console.log(app.query)
+
+    },
+
+    beforeRender: function() {
+      console.log(app.query)
+    },
+
+    serialize: function() {
+
+      return { query: app.query || "Search Tracks" }
+
+    },
+
     events: {
       "submit form": "getTracks"
     },

@@ -31,7 +31,7 @@ function(app) {
         app.apiRoot,
         "/tracks.json",
         "?client_id=" + app.clientId,
-        "&q=" + this.query,
+        "&q=" + app.query,
         "&filter=downloadable",
         "&duration[to]=600000",
         //"&limit=1",
@@ -56,7 +56,6 @@ function(app) {
     initialize: function( models, options ) {
 
       if (options) {
-        this.query = options.query;
         this.page = options.page;
       }
 
