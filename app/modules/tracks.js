@@ -45,7 +45,7 @@ function(app) {
         track.indexNum = response.indexOf(track)
         if ( track && track.artwork_url ) {
           // Replace default image artwork url with larger version
-          track.artwork_url = track.artwork_url.replace( "large", "t500x500");
+          track.artwork_url = track.artwork_url.replace( "large", "t500x500" );
         } 
         return track;
       });
@@ -138,6 +138,13 @@ function(app) {
         }
 
       }, this);
+
+      // Reset 'active' state to 0 if need be
+      if( this.collection.length && !app.active ) {
+        app.active = this.collection.first();
+      }
+
+
     },
 
     cleanup: function() {
