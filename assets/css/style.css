@@ -3,11 +3,23 @@
 	padding: 1em 2%;
 	margin: 0 auto;
 	max-width: 600px;
+	/*
+	border: 1px solid #ccc;
+	box-shadow:
+		-1px 1px 0 #bbb, 
+		-2px 2px 0 #bbb,
+		-3px 3px 0 #bbb,
+		-4px 4px 0 #bbb,
+		-5px 5px 0 #bbb
+	;
+	*/
 }
 input {
 	width: 96%;
-	padding: .3em 2%;
+	padding: .5em 2%;
 	border: 1px solid #ccc;
+	font-weight: 100;
+	border-radius: 3px;
 }
 .loading {
 	text-align: center;
@@ -43,11 +55,23 @@ li {
 }
 .player {
 	position: absolute;
-	top: 3%;
+	top: 5%;
 	width: 96%;
 	padding: 2%;
 	background: rgba(0,0,0, .7);
-	opacity: .2;
+	opacity: 0;
+	/* Firefox */
+	-moz-transition-property: opacity;
+	-moz-transition-duration: .3s;
+	/* WebKit */
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: .3s;
+	/* Opera */
+	-o-transition-property: opacity;
+	-o-transition-duration: .3s;
+	/* Standard */
+	transition-property: opacity;
+	transition-duration: .3s;
 }
 .detail:hover .player {
 	opacity: 1;
