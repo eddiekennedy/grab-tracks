@@ -5,32 +5,27 @@ body {
 	line-height: 2.0em;
 }
 #info {
-	width: 96%;
+	width: 90%;
+	padding: .5em 5% 1em;
 	margin: 0 auto;
 	font-size: .8em;
 	line-height: 1.4em;
+	border-bottom: 5px solid #ccc;
 }
 #info p {
 	margin: 0;
 }
 #main {
-	width: 96%;
-	padding: 1em 2%;
+	width: 90%;
+	padding: 1em 5%;
 	margin: 0 auto;
 	max-width: 600px;
-	/*
-	border: 1px solid #ccc;
-	box-shadow:
-		-1px 1px 0 #bbb, 
-		-2px 2px 0 #bbb,
-		-3px 3px 0 #bbb,
-		-4px 4px 0 #bbb,
-		-5px 5px 0 #bbb
-	;
-	*/
+}
+.form-section {
+	text-align: center;
 }
 input {
-	width: 96%;
+	width: 95%;
 	padding: .5em 2%;
 	border: 1px solid #ccc;
 	font-weight: 100;
