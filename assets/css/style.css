@@ -10,7 +10,8 @@ body {
 	padding: 0.5em 0 0.7em;
 	xfont-size: .8em;
 	xline-height: 1.4em;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #fff;
+	box-shadow: inset 0 -4px 30px rgba( 0, 0, 0, .05), 0 1px 0 rgba( 0, 0, 0, .05);
 }
 .info p,
 .info h1 {
@@ -23,7 +24,14 @@ body {
 .info h1 {
 	font-size: 1.2em;
 	font-weight: 400;
-	xbackground: url(../images/glyphicons_076_headphones.png) no-repeat left center;
+}
+.headphones {
+	background: url(../images/glyphicons_076_headphones.png) no-repeat bottom;
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	top: .2em;
 }
 .search,
 .tracks {
@@ -64,13 +72,13 @@ li {
 	display: block;
 	width: 100%;
 	height: 20px;
-	background: #ccc;
+	background: #ddd;
 }
 .show-detail:hover {
 	background: #bbb;
 }
 .active .show-detail {
-	background: #666;
+	background: #999;
 }
 .artwork {
 	width: 100%;
