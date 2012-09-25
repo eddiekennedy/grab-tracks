@@ -32,6 +32,7 @@ body {
 	height: 24px;
 	position: relative;
 	top: .2em;
+	margin-right: .15em;
 }
 .search,
 .tracks {
