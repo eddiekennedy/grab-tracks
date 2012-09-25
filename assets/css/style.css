@@ -1,3 +1,18 @@
+body {
+	padding: 0;
+	font-family: "Gill Sans";
+	font-size: 1.4em;
+	line-height: 2.0em;
+}
+#info {
+	width: 96%;
+	margin: 0 auto;
+	font-size: .8em;
+	line-height: 1.4em;
+}
+#info p {
+	margin: 0;
+}
 #main {
 	width: 96%;
 	padding: 1em 2%;
