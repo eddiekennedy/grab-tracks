@@ -78,6 +78,15 @@ li {
 .show-detail:hover {
 	background: #bbb;
 }
+.show-detail img {
+	width: 100%;
+	vertical-align: top;
+	float: left;
+	opacity: .5;
+}
+.show-detail:hover img{
+	opacity: 1;
+}
 .active .show-detail {
 	background: #999;
 }

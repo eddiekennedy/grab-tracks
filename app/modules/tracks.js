@@ -45,6 +45,7 @@ function(app) {
         track.indexNum = response.indexOf(track);
         if ( track && track.artwork_url ) {
           // Replace default image artwork url with larger version
+          track.icon = track.artwork_url.replace( "large", "tiny" );
           track.artwork_url = track.artwork_url.replace( "large", "t500x500" );
         } 
         return track;
