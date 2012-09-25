@@ -19,6 +19,13 @@ function($, _, Backbone) {
     clientId: "f652822b93b6a6799336b4a729d50de8",
     problem: function() {
       console.log("there was a problem");
+    },
+    showInfo: function() {
+      return [
+        '<div class="info">',
+          '<h1>GrabTracks</h1>',
+        '</div>',
+      ].join("");
     }
   };
 

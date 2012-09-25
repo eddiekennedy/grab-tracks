@@ -31,6 +31,12 @@ function(app, Tracks, Search) {
 
     tracks: function( query, page ) {
 
+      // Hide info
+      if ( !$(".info").length ) {
+        var info = app.showInfo();
+        $("#main").prepend( $(info) ); 
+      }
+
       // Reset to initial state.
       this.reset();
       // Set query

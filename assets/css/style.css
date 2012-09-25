@@ -1,25 +1,39 @@
 body {
-	padding: 0;
+	padding: 0 0 2em;
 	font-family: "Gill Sans";
-	font-size: 1.4em;
-	line-height: 2.0em;
+	font-size: 1.1em;
+	line-height: 1.6em;
 }
-#info {
-	width: 90%;
-	padding: .5em 5% 1em;
+.info {
+	width: 100%;
 	margin: 0 auto;
-	font-size: .8em;
-	line-height: 1.4em;
-	border-bottom: 5px solid #ccc;
+	padding: 0.8em 0 1em;
+	xfont-size: .8em;
+	xline-height: 1.4em;
+	border-bottom: 1px solid #eee;
 }
-#info p {
-	margin: 0;
-}
-#main {
-	width: 90%;
-	padding: 1em 5%;
+.info p,
+.info h1 {
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 5%;
 	margin: 0 auto;
 	max-width: 600px;
+}
+.info h1 {
+	font-size: 1.6em;
+	font-weight: 400;
+	background: url(../images/glyphicons_076_headphones.png) no-repeat left center;
+}
+.search,
+.tracks {
+	width: 90%;
+	padding: 0 5%;
+	margin: 0 auto;
+	max-width: 600px;
+}
+.search {
+	padding-top: 1.5em;
 }
 .form-section {
 	text-align: center;
@@ -27,9 +41,10 @@ body {
 input {
 	width: 95%;
 	padding: .5em 2%;
-	border: 1px solid #ccc;
+	border: 1px solid #999;
 	font-weight: 100;
 	border-radius: 3px;
+	font-size: 1.3em;
 }
 .loading {
 	text-align: center;
@@ -85,4 +100,7 @@ li {
 }
 .detail:hover .player {
 	opacity: 1;
+}
+.try-again p {
+	margin: 0;
 }
