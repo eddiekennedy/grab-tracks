@@ -7,7 +7,7 @@ body {
 .info {
 	width: 100%;
 	margin: 0 auto;
-	padding: 0.8em 0 1em;
+	padding: 0.5em 0 0.7em;
 	xfont-size: .8em;
 	xline-height: 1.4em;
 	border-bottom: 1px solid #eee;
@@ -21,7 +21,7 @@ body {
 	max-width: 600px;
 }
 .info h1 {
-	font-size: 1.6em;
+	font-size: 1.2em;
 	font-weight: 400;
 	xbackground: url(../images/glyphicons_076_headphones.png) no-repeat left center;
 }
