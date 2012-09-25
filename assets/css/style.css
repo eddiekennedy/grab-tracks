@@ -23,7 +23,7 @@ body {
 .info h1 {
 	font-size: 1.6em;
 	font-weight: 400;
-	background: url(../images/glyphicons_076_headphones.png) no-repeat left center;
+	xbackground: url(../images/glyphicons_076_headphones.png) no-repeat left center;
 }
 .search,
 .tracks {
