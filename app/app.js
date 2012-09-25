@@ -24,7 +24,7 @@ function($, _, Backbone) {
       return [
         '<div class="info">',
           '<h1>GrabTracks</h1>',
-        '</div>',
+        '</div>'
       ].join("");
     }
   };
