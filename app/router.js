@@ -51,7 +51,7 @@ function(app, Tracks, Search) {
       // Reset collections to initial state.
       if ( this.tracks.length ) {
         this.tracks.reset();
-      };
+      }
 
       // Reset active model.
       app.active = false;

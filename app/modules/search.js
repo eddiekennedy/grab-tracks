@@ -14,7 +14,7 @@ function(app) {
     template: "tracks/search",
 
     serialize: function() {
-      return { query: app.query || "Search Tracks" }
+      return { query: app.query || "Search Tracks" };
     },
 
     events: {

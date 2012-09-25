@@ -42,7 +42,7 @@ function(app) {
     parse: function(response) {
 
       response = _.each( response, function( track ){
-        track.indexNum = response.indexOf(track)
+        track.indexNum = response.indexOf(track);
         if ( track && track.artwork_url ) {
           // Replace default image artwork url with larger version
           track.artwork_url = track.artwork_url.replace( "large", "t500x500" );

@@ -18,7 +18,7 @@ function($, _, Backbone) {
     apiRoot: "https://api.soundcloud.com",
     clientId: "f652822b93b6a6799336b4a729d50de8",
     problem: function() {
-      console.log("there was a problem")
+      console.log("there was a problem");
     }
   };
 
@@ -29,7 +29,6 @@ function($, _, Backbone) {
 
     return function() {
       this.trigger("fetch");
-
       return fetch.apply(this, arguments);
     };
   }();
