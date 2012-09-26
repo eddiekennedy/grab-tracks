@@ -16,10 +16,7 @@ function($, _, Backbone) {
     // The root path to run the application.
     root: "/",
     apiRoot: "https://api.soundcloud.com",
-    clientId: "f652822b93b6a6799336b4a729d50de8",
-    problem: function() {
-      console.log("there was a problem");
-    }
+    clientId: "f652822b93b6a6799336b4a729d50de8"
   };
 
   // Patch collection fetching to emit a `fetch` event.

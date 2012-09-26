@@ -40,7 +40,12 @@ function(app, Tracks, Search) {
       // Fetch Data
       this.tracks.fetch({
         error: function() {
-          app.problem();
+          var errorMessage = [
+            '<p class="error">',
+              'There was a problem fetching data from SoundCloud, please <a href="q/' + app.query + '">try again</a>.',
+            '<p>'
+          ].join("");
+          $(".tracks-wrapper").html( errorMessage );
         }
       });
 
