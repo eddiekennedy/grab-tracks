@@ -22,8 +22,6 @@ function(app, Tracks, Search) {
 
     index: function() {
 
-      this.reset();
-
       // Use the main layout.
       app.useLayout("main").render();
 
@@ -31,12 +29,20 @@ function(app, Tracks, Search) {
 
     tracks: function( query, page ) {
 
-      // Reset to initial state.
-      this.reset();
+      // Hide intro
+      app.showIntro = false;
+
+      // Reset collections to initial state.
+      if ( this.tracks.length ) {
+        this.tracks.reset();
+      }
+
       // Set query
       app.query = query;
+
       // Set page
       this.tracks.page = page || 0;
+
       // Fetch Data
       this.tracks.fetch({
         error: function() {
@@ -51,26 +57,15 @@ function(app, Tracks, Search) {
 
     },
 
-    reset: function() {
-
-      // Reset collections to initial state.
-      if ( this.tracks.length ) {
-        this.tracks.reset();
-      }
-
-      // Reset active model.
-      app.active = false;
-      app.query = false;
-      //this.commits.repo = false;
-
-    },
-
-    // Shortcut for building a url.
+    // Shortcut for building a url ( source: https://github.com/tbranyen/github-viewer )
     go: function() {
       return this.navigate(_.toArray(arguments).join("/"), true);
     },
 
     initialize: function() {
+
+      // Show intro
+      app.showIntro = true;
 
       // Set up the tracks.
       this.tracks = new Tracks.Collection();

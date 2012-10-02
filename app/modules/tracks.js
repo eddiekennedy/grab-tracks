@@ -123,7 +123,8 @@ function(app) {
 
     serialize: function() {
       return {
-        count: this.collection.length 
+        count: this.collection.length,
+        showIntro: app.showIntro
       };
     },
 
@@ -146,7 +147,6 @@ function(app) {
       if( this.collection.length && !app.active ) {
         app.active = this.collection.first();
       }
-
 
     },
 
