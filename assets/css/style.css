@@ -38,7 +38,8 @@ a {
 	margin-right: .15em;
 }
 .search,
-.tracks {
+.tracks,
+.contain {
 	width: 90%;
 	padding: 0 5%;
 	margin: 0 auto;
