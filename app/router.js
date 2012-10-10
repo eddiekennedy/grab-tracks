@@ -30,7 +30,9 @@ function(app, Tracks, Search) {
     tracks: function( query, page ) {
 
       // Hide intro
-      app.showIntro = false;
+      if ( $(".info").length ) {
+        $(".info").hide()
+      }
 
       // Reset collections to initial state.
       if ( this.tracks.length ) {
@@ -63,9 +65,6 @@ function(app, Tracks, Search) {
     },
 
     initialize: function() {
-
-      // Show intro
-      app.showIntro = true;
 
       // Set up the tracks.
       this.tracks = new Tracks.Collection();

@@ -27,6 +27,7 @@ function(app) {
 
     getTracks: function(event) {
       app.router.go("q", this.$(".query").val().replace(" ", "+") );
+      console.log('what')
       return false;
     }
 
