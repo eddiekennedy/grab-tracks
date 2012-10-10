@@ -57,6 +57,7 @@ input {
 	font-weight: 100;
 	border-radius: 3px;
 	font-size: 1.3em;
+	background: url(../images/glyphicons_027_search.png) no-repeat 98% center;
 }
 .loading {
 	text-align: center;
