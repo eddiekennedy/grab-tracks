@@ -17,6 +17,10 @@ function(app) {
       return { query: app.query || "Search Tracks" };
     },
 
+    afterRender: function() {
+      this.$el.find("input").focus()
+    },
+
     events: {
       "submit form": "getTracks"
     },
