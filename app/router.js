@@ -22,6 +22,9 @@ function(app, Tracks, Search) {
 
     index: function() {
 
+      // Reset query
+      //app.query = false;
+
       // Use the main layout.
       app.useLayout("main").render();
 
@@ -65,6 +68,9 @@ function(app, Tracks, Search) {
     },
 
     initialize: function() {
+
+      // Reset query
+      //app.query = false;
 
       // Set up the tracks.
       this.tracks = new Tracks.Collection();

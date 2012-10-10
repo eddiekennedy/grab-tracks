@@ -1,11 +1,16 @@
 body {
 	padding: 0 0 2em;
-	font-family: "Gill Sans";
+	font-family: verdana;
 	font-size: 1.1em;
 	line-height: 1.6em;
+	font-weight: 100;
 }
 a {
-	color: #333;
+	color: #222;
+}
+a:hover {
+	color: #999;
+	text-decoration: none;
 }
 .header {
 	width: 100%;
@@ -58,6 +63,16 @@ input {
 	font-size: 1.3em;
 	background: url(../images/glyphicons_027_search.png) no-repeat 98% center;
 }
+input::-webkit-input-placeholder {
+    color: #ccc;
+    font-weight: 100;
+}
+input:-moz-placeholder {
+    color: #ccc;
+}
+input:-ms-input-placeholder {
+    color: #ccc;
+}
 .loading {
 	text-align: center;
 	padding-top: 3em;
@@ -72,15 +87,19 @@ ul.track-menu li {
 	width: 3%;
 	margin-left: 1%;
 }
-.intro {
+.info {
 	margin-top: 2em;
-	color: #777;
+	font-size: .9em;
 }
-.intro ul {
-	padding-left: 1em;
+.info ul {
+	padding-left: 1.2em;
+	margin-top: .3em;
 }
-.intro li {
-	margin-bottom: .7em;
+.info li {
+	margin-bottom: .6em;
+}
+label {
+	font-weight: bold;
 }
 .show-detail {
 	display: block;
