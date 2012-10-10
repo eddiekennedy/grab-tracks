@@ -37,8 +37,6 @@ a {
 	top: .2em;
 	margin-right: .15em;
 }
-.search,
-.tracks,
 .contain {
 	width: 90%;
 	padding: 0 5%;
@@ -54,7 +52,7 @@ a {
 input {
 	width: 95%;
 	padding: .5em 2%;
-	border: 1px solid #999;
+	border: 2px solid #222;
 	font-weight: 100;
 	border-radius: 3px;
 	font-size: 1.3em;
