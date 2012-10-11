@@ -77,16 +77,6 @@ input:-ms-input-placeholder {
 	text-align: center;
 	padding-top: 3em;
 }
-ul.track-menu {
-	list-style: none;
-	padding: 0;
-	width: 100%;
-}
-ul.track-menu li {
-	display: inline-block;
-	width: 3%;
-	margin-left: 1%;
-}
 .info {
 	margin-top: 2em;
 	font-size: .9em;
@@ -101,11 +91,19 @@ ul.track-menu li {
 label {
 	font-weight: bold;
 }
+ul.track-menu {
+	list-style: none;
+	padding: 0;
+	width: 100%;
+}
+ul.track-menu li {
+	display: inline-block;
+	width: 3%;
+	margin-left: 1%;
+}
 .show-detail {
 	display: block;
 	width: 100%;
-	height: 20px;
-	background: #ddd;
 }
 .show-detail:hover {
 	background: #bbb;
@@ -119,8 +117,9 @@ label {
 .show-detail:hover img{
 	opacity: 1;
 }
-.active .show-detail {
-	background: #999;
+.active .show-detail img {
+	opacity: 1;
+	box-shadow: 0 2px 0 red;
 }
 .artwork {
 	width: 100%;
