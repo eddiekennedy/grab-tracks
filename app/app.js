@@ -16,7 +16,8 @@ function($, _, Backbone) {
     // The root path to run the application.
     root: "/",
     apiRoot: "https://api.soundcloud.com",
-    clientId: "f652822b93b6a6799336b4a729d50de8"
+    clientId: "f652822b93b6a6799336b4a729d50de8",
+    attachKeyEvents: true
   };
 
   // Patch collection fetching to emit a `fetch` event.
@@ -29,7 +30,19 @@ function($, _, Backbone) {
       return fetch.apply(this, arguments);
     };
   }();
-
+/*
+  // Attach key events to the docuement
+  $(document).keyup(function( event ){
+    if ( event.keyCode === 37 ) { 
+      console.log( "left" )
+      return false;
+    }
+    if ( event.keyCode === 39 ) { 
+      console.log( "right" )
+      return false;
+    }
+  });
+*/
   // Localize or create a new JavaScript Template object.
   var JST = window.JST = window.JST || {};
 

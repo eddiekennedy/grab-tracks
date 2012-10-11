@@ -17,6 +17,16 @@ function(app) {
       app.router.tracks.page = this.get("indexNum");
       Tracks.Detail.model.set("id", this.id);
 
+    },
+
+    moveDetail: function() {
+
+      console.log( this.get("indexNum") )
+      var currentIndex = this.get("indexNum");
+
+      app.router.tracks.page = currentIndex + 1;
+      Tracks.Detail.model.set("indexNum", currentIndex + 1);
+
     }
   
   });
@@ -110,6 +120,36 @@ function(app) {
 
     initialize: function() {
       this.model.on("change", this.render, this);
+    },
+
+    afterRender: function() {
+
+      if ( app.attachKeyEvents ) {
+
+        var that = this;
+
+        // Attach key events to the docuement
+        $(document).keyup(function( event ){
+          if ( event.keyCode === 37 ) { 
+            console.log( "left" )
+            that.moveDetail();
+            return false;
+          }
+          if ( event.keyCode === 39 ) { 
+            console.log( "right" )
+            that.moveDetail();
+            return false;
+          }
+        });
+
+        app.attachKeyEvents = false;
+
+      }
+
+    },
+
+    moveDetail: function( event ) {
+      this.model.moveDetail();
     }
 
   });

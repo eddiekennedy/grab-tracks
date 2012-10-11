@@ -69,6 +69,8 @@ function(app, Tracks, Search) {
 
     initialize: function() {
 
+      app.keyEvents = false;
+
       // Reset query
       //app.query = false;
 
