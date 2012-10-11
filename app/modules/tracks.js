@@ -123,10 +123,10 @@ function(app) {
     },
 
     afterRender: function() {
-
+        var that = this;
+/*
       if ( app.attachKeyEvents ) {
 
-        var that = this;
 
         // Attach key events to the docuement
         $(document).keyup(function( event ){
@@ -145,7 +145,7 @@ function(app) {
         app.attachKeyEvents = false;
 
       }
-
+*/
     },
 
     moveDetail: function( event ) {
