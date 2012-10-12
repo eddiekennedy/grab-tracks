@@ -155,18 +155,14 @@ ul.track-menu li {
 .try-again p {
 	margin: 0;
 }
-
 .tag {
 	position: absolute;
 	top: 80%;
 	left: 7%;
 	z-index: 50;
-
 	display: block;
 	background: #fff;
 	padding: 5px 20px;
-
 	font-size: .8em;
 	line-height: 1.6em;
-
 }

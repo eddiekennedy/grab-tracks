@@ -53,7 +53,7 @@ function(app, Tracks, Search) {
         error: function() {
           var errorMessage = [
             '<p class="error">',
-              'There was a problem fetching data from SoundCloud, please <a href="q/' + app.query + '">try again</a>.',
+              'There was a problem fetching data from SoundCloud, please reload the page to try again</a>.',
             '<p>'
           ].join("");
           $(".tracks-wrapper").html( errorMessage );

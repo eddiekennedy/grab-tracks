@@ -23,14 +23,16 @@ function($, _, Backbone) {
   // Patch collection fetching to emit a `fetch` event.
   // http://tbranyen.com/post/how-to-indicate-backbone-fetch-progress
   Backbone.Collection.prototype.fetch = function() {
+    
     var fetch = Backbone.Collection.prototype.fetch;
 
     return function() {
       this.trigger("fetch");
       return fetch.apply(this, arguments);
     };
+
   }();
-  
+
   // Localize or create a new JavaScript Template object.
   var JST = window.JST = window.JST || {};
 
