@@ -30,19 +30,7 @@ function($, _, Backbone) {
       return fetch.apply(this, arguments);
     };
   }();
-/*
-  // Attach key events to the docuement
-  $(document).keyup(function( event ){
-    if ( event.keyCode === 37 ) { 
-      console.log( "left" )
-      return false;
-    }
-    if ( event.keyCode === 39 ) { 
-      console.log( "right" )
-      return false;
-    }
-  });
-*/
+  
   // Localize or create a new JavaScript Template object.
   var JST = window.JST = window.JST || {};
 
