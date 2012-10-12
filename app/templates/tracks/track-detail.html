@@ -1,8 +1,4 @@
-<% if (track.get("artwork_url")) { %>
-	<img src="<%= track.get("artwork_url") %>" class="artwork" />
-<% }else{ %>
-	<img src="/assets/images/white-label.jpg" class="artwork" />
-<% } %>
+<img src="<%= track.get("artwork_url") %>" class="artwork" />
 <% if ( track.get("downloadable") == false) { %>
 	<div class="try-again">
 		<p>This track is no longer available for direct download.</p>

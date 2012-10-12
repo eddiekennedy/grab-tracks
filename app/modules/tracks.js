@@ -46,13 +46,17 @@ function(app) {
       response = _.each( response, function( track ){
         track.indexNum = response.indexOf(track);
         // Set title for thumbnail
-        track.titleAttr = track.title + " | " + track.user.username;
-        if ( track && track.artwork_url ) {
+        track.titleAttr = track.user.username + " | " + track.title;
+        if ( track.artwork_url ) {
           // Save tiny version for thumbnail
           track.icon = track.artwork_url.replace( "large", "tiny" );
           // Replace default image artwork url with larger version
           track.artwork_url = track.artwork_url.replace( "large", "t500x500" );
-        } 
+        } else {
+          // Default whitelabel image
+          track.icon = "/assets/images/white-label-thumb.png";
+          track.artwork_url = "/assets/images/white-label.jpg";
+        }
         return track;
       });
       return response;
