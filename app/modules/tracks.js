@@ -15,17 +15,9 @@ function(app) {
     showDetail: function() {
 
       app.router.tracks.page = this.get("indexNum");
+      //console.log( "app.router.tracks.page", app.router.tracks.page );
       Tracks.Detail.model.set("id", this.id);
-
-    },
-
-    moveDetail: function() {
-
-      console.log( this.get("indexNum") )
-      var currentIndex = this.get("indexNum");
-
-      app.router.tracks.page = currentIndex + 1;
-      Tracks.Detail.model.set("indexNum", currentIndex + 1);
+      //console.log( "model.id", Tracks.Detail.model.set("id", this.id) );
 
     }
   
@@ -73,6 +65,36 @@ function(app) {
         this.page = options.page;
       }
 
+    },
+
+    moveDetail: function( direction ) {
+
+      //console.log("COLLECTIONLENGTH", this.length )
+      //console.log( "BEFORE", app.router.tracks.page )
+
+      var count = this.length - 1,
+          page = app.router.tracks.page;
+
+      if ( direction === "left" ){
+        app.router.tracks.page = page !== 0 ? page - 1 : count ;
+      }
+
+      if ( direction === "right" ){
+        app.router.tracks.page = page !== count ? page + 1 : 0;
+      }
+
+      //console.log( "AFTER", app.router.tracks.page )
+
+      var thatModel = this.where({ indexNum : app.router.tracks.page }),
+          thatModelId = thatModel[0].get("id");
+
+      app.active = thatModel[0];
+
+      //console.log( "THAT MODEL ID", thatModelId )
+      //console.log( "THAT MODEL", thatModel[0] )
+
+      Tracks.Detail.model.set("id", thatModelId);
+
     }
 
   });
@@ -88,6 +110,15 @@ function(app) {
       return { track: this.model };
     },
 
+    beforeRender: function() {
+
+      if (app.active === this.model) {
+        this.$el.siblings().removeClass("active");
+        this.$el.addClass("active");
+      }
+
+    },
+
     events: {
       "click .show-detail": "showDetail"
     },
@@ -96,15 +127,6 @@ function(app) {
       app.active = this.model;
       this.model.showDetail();
       return false;
-    },
-
-    beforeRender: function() {
-
-      if (app.active === this.model) {
-        this.$el.siblings().removeClass("active");
-        this.$el.addClass("active");
-      }
-
     }
 
   });
@@ -120,36 +142,6 @@ function(app) {
 
     initialize: function() {
       this.model.on("change", this.render, this);
-    },
-
-    afterRender: function() {
-        var that = this;
-/*
-      if ( app.attachKeyEvents ) {
-
-
-        // Attach key events to the docuement
-        $(document).keyup(function( event ){
-          if ( event.keyCode === 37 ) { 
-            console.log( "left" )
-            that.moveDetail();
-            return false;
-          }
-          if ( event.keyCode === 39 ) { 
-            console.log( "right" )
-            that.moveDetail();
-            return false;
-          }
-        });
-
-        app.attachKeyEvents = false;
-
-      }
-*/
-    },
-
-    moveDetail: function( event ) {
-      this.model.moveDetail();
     }
 
   });
@@ -163,8 +155,7 @@ function(app) {
 
     serialize: function() {
       return {
-        count: this.collection.length,
-        showIntro: app.showIntro
+        count: this.collection.length
       };
     },
 
@@ -190,6 +181,34 @@ function(app) {
 
     },
 
+    afterRender: function() {
+
+      var that = this;
+
+      if ( app.attachKeyEvents ) {
+
+        // Attach l/r arrow key events to the document
+        $(document).keyup(function( event ){
+          if ( event.keyCode === 37 ) { 
+            // Left
+            //console.log(" * LEFT * ")
+            that.collection.moveDetail( "left" );
+            return false;
+          }
+          if ( event.keyCode === 39 ) { 
+            // Right
+            //console.log(" * RIGHT * ")
+            that.collection.moveDetail( "right" );
+            return false;
+          }
+        });
+
+        app.attachKeyEvents = false;
+
+      }
+
+    },
+
     cleanup: function() {
 
       this.collection.off(null, null, this);
@@ -208,7 +227,7 @@ function(app) {
     },
 
     events: {
-      "submit form": "getTracks"
+      "submit form": "getTracks",
     },
 
     getTracks: function( event ) {
