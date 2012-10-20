@@ -26,7 +26,7 @@ function(app) {
     },
 
     getTracks: function(event) {
-      app.router.go("q", this.$(".query").val().replace(" ", "+") );
+      app.router.go("q", this.$(".query").val().replace(/ /g, "+") );
       return false;
     }
 
