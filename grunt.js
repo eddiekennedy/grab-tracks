@@ -5,10 +5,6 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    // The clean task ensures all files are removed from the dist/ directory so
-    // that no files linger from previous builds.
-    clean: ["dist/"],
-
     // The lint task will run the build configuration and the application
     // JavaScript through JSHint and report any errors.  You can change the
     // options for this task, by reading this:
@@ -41,16 +37,45 @@ module.exports = function(grunt) {
       ]
     },
 
-    // The handlebars task compiles all application templates into JavaScript
-    // functions using Handlebars templating engine.
-    //
-    // Since this task defaults to writing to the same file as the jst task,
-    // edit the debug task replacing jst with handlebars.
-    //
-    // The concat task depends on this file to exist, so if you decide to
-    // remove this, ensure concat is updated accordingly.
-    handlebars: {
-      "dist/debug/templates.js": ["app/templates/**/*.html"]
+    // This task simplifies working with CSS inside Backbone Boilerplate
+    // projects.  Instead of manually specifying your stylesheets inside the
+    // configuration, you can use `@imports` and this task will concatenate
+    // only those paths.
+    styles: {
+      // Out the concatenated contents of the following styles into the below
+      // development file path.
+      "dist/debug/index.css": {
+        // Point this to where your `index.css` file is location.
+        src: "app/styles/index.css",
+
+        // The relative path to use for the @imports.
+        paths: ["app/styles"],
+
+        // Point to where styles live.
+        prefix: "app/styles/",
+
+        // Additional production-only stylesheets here.
+        additional: []
+      }
+    },
+
+    // This task uses James Burke's excellent r.js AMD build tool.  In the
+    // future other builders may be contributed as drop-in alternatives.
+    requirejs: {
+      // Include the main configuration file.
+      mainConfigFile: "app/config.js",
+
+      // Also include the JamJS configuration file.
+      jamConfig: "/vendor/jam/require.config.js",
+
+      // Output file.
+      out: "dist/debug/require.js",
+
+      // Root application module.
+      name: "config",
+
+      // Do not wrap everything in an IIFE.
+      wrap: false
     },
 
     // The concatenate task is used here to merge the almond require/define
@@ -60,7 +85,7 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
-          "assets/js/libs/almond.js",
+          "vendor/js/libs/almond.js",
           "dist/debug/templates.js",
           "dist/debug/require.js"
         ],
@@ -79,39 +104,6 @@ module.exports = function(grunt) {
       "dist/release/index.css": [
         "dist/debug/index.css"
       ]
-    },
-
-    // The stylus task is used to compile Stylus stylesheets into a single
-    // CSS file for debug and release deployments.  
-    stylus: {
-      // Put all your CSS files here, order matters!
-      files: [
-        "assets/vendor/h5bp/css/style.css"
-      ],
-
-      // Default task which runs in debug mode, this will build out to the
-      // `dist/debug` directory.
-      compile: {
-        // Used for @imports.
-        options: { paths: ["assets/css"] },
-        
-        files: {
-          "dist/debug/index.css": "<config:stylus.files>"
-        }
-      },
-
-      // This dev task only runs with `watch:stylus` this will *completely*
-      // overwrite the `assets/css/index.css` file referenced in `index.html`.
-      // Use this only when you cannot use the `bbb server` runtime
-      // compilation.
-      dev: {
-        // Used for @imports.
-        options: { paths: ["assets/css"] },
-        
-        files: {
-          "assets/css/index.css": "<config:stylus.files>"
-        }
-      }
     },
 
     // Takes the built require.js file and minifies it for filesize benefits.
@@ -140,15 +132,18 @@ module.exports = function(grunt) {
       // Ensure the favicon is mapped correctly.
       files: { "favicon.ico": "favicon.ico" },
 
+      // For styles.
+      prefix: "app/styles/",
+
       debug: {
         // Ensure the favicon is mapped correctly.
-        files: { "favicon.ico": "favicon.ico" },
+        files: "<config:server.files>",
 
         // Map `server:debug` to `debug` folders.
         folders: {
           "app": "dist/debug",
-          "assets/js/libs": "dist/debug",
-          "assets/css": "dist/debug"
+          "vendor/js/libs": "dist/debug",
+          "app/styles": "dist/debug"
         }
       },
 
@@ -157,31 +152,15 @@ module.exports = function(grunt) {
         host: "0.0.0.0",
 
         // Ensure the favicon is mapped correctly.
-        files: { "favicon.ico": "favicon.ico" },
+        files: "<config:server.files>",
 
         // Map `server:release` to `release` folders.
         folders: {
           "app": "dist/release",
-          "assets/js/libs": "dist/release",
-          "assets/css": "dist/release"
+          "vendor/js/libs": "dist/release",
+          "app/styles": "dist/release"
         }
       }
-    },
-
-    // This task uses James Burke's excellent r.js AMD build tool.  In the
-    // future other builders may be contributed as drop-in alternatives.
-    requirejs: {
-      // Include the main configuration file.
-      mainConfigFile: "app/config.js",
-
-      // Output file.
-      out: "dist/debug/require.js",
-
-      // Root application module.
-      name: "config",
-
-      // Do not wrap everything in an IIFE.
-      wrap: false
     },
 
     // The headless QUnit testing environment is provided for "free" by Grunt.
@@ -198,15 +177,50 @@ module.exports = function(grunt) {
 
     // The watch task can be used to monitor the filesystem and execute
     // specific tasks when files are modified.  By default, the watch task is
-    // available to compile stylus templates if you are unable to use the
-    // runtime builder (use if you have a custom server, PhoneGap, Adobe Air,
-    // etc.)
+    // available to compile CSS if you are unable to use the runtime compiler
+    // (use if you have a custom server, PhoneGap, Adobe Air, etc.)
     watch: {
-      stylus: {
-        files: ["grunt.js", "assets/css/**/*.styl"],
-        tasks: "stylus:dev"
-      }
-    }
+      files: ["grunt.js", "vendor/**/*", "app/**/*"],
+      tasks: "styles"
+    },
+
+    // The clean task ensures all files are removed from the dist/ directory so
+    // that no files linger from previous builds.
+    clean: ["dist/"],
+
+    // If you want to generate targeted `index.html` builds into the `dist/`
+    // folders, uncomment the following configuration block and use the
+    // conditionals inside `index.html`.
+    //targethtml: {
+    //  debug: {
+    //    src: "index.html",
+    //    dest: "dist/debug/index.html"
+    //  },
+    //
+    //  release: {
+    //    src: "index.html",
+    //    dest: "dist/release/index.html"
+    //  }
+    //},
+    
+    // This task will copy assets into your build directory,
+    // automatically.  This makes an entirely encapsulated build into
+    // each directory.
+    //copy: {
+    //  debug: {
+    //    files: {
+    //      "dist/debug/app/": "app/**",
+    //      "dist/debug/vendor/": "vendor/**"
+    //    }
+    //  },
+
+    //  release: {
+    //    files: {
+    //      "dist/release/app/": "app/**",
+    //      "dist/release/vendor/": "vendor/**"
+    //    }
+    //  }
+    //}
 
   });
 
@@ -215,7 +229,7 @@ module.exports = function(grunt) {
   // dist/debug/templates.js, compile all the application code into
   // dist/debug/require.js, and then concatenate the require/define shim
   // almond.js and dist/debug/templates.js into the require.js file.
-  grunt.registerTask("debug", "clean lint jst requirejs concat stylus:compile");
+  grunt.registerTask("debug", "clean lint jst requirejs concat styles");
 
   // The release task will run the debug tasks and then minify the
   // dist/debug/require.js file and CSS files.

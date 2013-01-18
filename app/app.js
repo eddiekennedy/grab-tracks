@@ -1,14 +1,18 @@
 define([
-  // Libraries.
-  "jquery",
-  "lodash",
-  "backbone",
+  "backbone.layoutmanager"
+], function() {
 
-  // Plugins.
-  "plugins/backbone.layoutmanager"
-],
+  // Patch collection fetching to emit a `fetch` event.
+  // via - http://tbranyen.com/post/how-to-indicate-backbone-fetch-progress
+  Backbone.Collection.prototype.fetch = function() {
+    var fetch = Backbone.Collection.prototype.fetch;
 
-function($, _, Backbone) {
+    return function() {
+      this.trigger("fetch");
+
+      return fetch.apply(this, arguments);
+    };
+  }();
 
   // Provide a global location to place configuration settings and module
   // creation.
@@ -16,22 +20,8 @@ function($, _, Backbone) {
     // The root path to run the application.
     root: "/",
     apiRoot: "https://api.soundcloud.com",
-    clientId: "f652822b93b6a6799336b4a729d50de8",
-    attachKeyEvents: true
+    clientId: "f652822b93b6a6799336b4a729d50de8"
   };
-
-  // Patch collection fetching to emit a `fetch` event.
-  // http://tbranyen.com/post/how-to-indicate-backbone-fetch-progress
-  Backbone.Collection.prototype.fetch = function() {
-    
-    var fetch = Backbone.Collection.prototype.fetch;
-
-    return function() {
-      this.trigger("fetch");
-      return fetch.apply(this, arguments);
-    };
-
-  }();
 
   // Localize or create a new JavaScript Template object.
   var JST = window.JST = window.JST || {};
@@ -41,30 +31,24 @@ function($, _, Backbone) {
     // Allow LayoutManager to augment Backbone.View.prototype.
     manage: true,
 
-    paths: {
-      layout: "app/templates/layouts/",
-      template: "app/templates/"
-    },
+    prefix: "app/templates/",
 
     fetch: function(path) {
-      // Initialize done for use in async-mode
-      var done;
-
       // Concatenate the file extension.
       path = path + ".html";
 
       // If cached, use the compiled template.
       if (JST[path]) {
         return JST[path];
-      } else {
-        // Put fetch into `async-mode`.
-        done = this.async();
-
-        // Seek out the template asynchronously.
-        return $.ajax({ url: app.root + path }).then(function(contents) {
-          done(JST[path] = _.template(contents));
-        });
       }
+
+      // Put fetch into `async-mode`.
+      var done = this.async();
+
+      // Seek out the template asynchronously.
+      $.get(app.root + path, function(contents) {
+        done(JST[path] = _.template(contents));
+      });
     }
   });
 
@@ -77,34 +61,27 @@ function($, _, Backbone) {
 
     // Helper for using layouts.
     useLayout: function(name, options) {
-      // If already using this Layout, then don't re-inject into the DOM.
-      if (this.layout && this.layout.options.template === name) {
-        return this.layout;
+      // Enable variable arity by allowing the first argument to be the options
+      // object and omitting the name argument.
+      if (_.isObject(name)) {
+        options = name;
       }
 
-      // If a layout already exists, remove it from the DOM.
-      if (this.layout) {
-        this.layout.remove();
+      // Ensure options is an object.
+      options = options || {};
+
+      // If a name property was specified use that as the template.
+      if (_.isString(name)) {
+        options.template = name;
       }
 
       // Create a new Layout with options.
       var layout = new Backbone.Layout(_.extend({
-        template: name,
-        className: "layout " + name,
-        id: "layout"
+        el: "#main"
       }, options));
 
-      // Insert into the DOM.
-      $("#main").empty().append(layout.el);
-
-      // Render the layout.
-      layout.render();
-
       // Cache the refererence.
-      this.layout = layout;
-
-      // Return the reference, for chainability.
-      return layout;
+      return this.layout = layout;
     }
   }, Backbone.Events);
 
