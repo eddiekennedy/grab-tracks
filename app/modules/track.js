@@ -22,13 +22,19 @@ function(app) {
 
     url: function() {
 
+      var toOrFrom = "to";
+
+      if ( this.searchType === "m") {
+        toOrFrom = "from";
+      }
+
       return [
         app.apiRoot,
         "/tracks.json",
         "?client_id=" + app.clientId,
         "&q=" + this.query,
         "&filter=downloadable",
-        "&duration[to]=600000",
+        "&duration[" + toOrFrom + "]=600000",
         "&limit=5",
         "&offset=" + (this.page - 1)
       ].join("");
@@ -113,7 +119,9 @@ console.log("response", response);
 
     doSearch: function() {
       event.preventDefault();
-      app.router.go("q", this.$(".query").val().replace(/ /g, "+") );
+      var searchType = this.$('input:radio[name=length]:checked').val();
+      var queryTerm = this.$(".query").val().replace(/ /g, "+");
+      app.router.go( searchType, queryTerm );
       return false;
     }
 
