@@ -4,8 +4,29 @@
 @import "../../vendor/h5bp/css/main.css";
 
 /*-- Application stylesheets. -----------------------------------------------*/
+body{ 
+	background: #eee;
+}
+.header,
+.tracks {
+	padding: 0 3%;
+	background: #fff;
+}
+.header {
+	margin-bottom: .5em;
+}
+h1 {
+	margin: 0;
+}
+ul {
+	padding: 0;
+	list-style: none;
+}
 li {
 	padding-bottom: 2em;
 	margin-bottom: 2em;
 	border-bottom: 1px solid #000
+}
+li:last-child {
+	border-bottom: none;
 }
