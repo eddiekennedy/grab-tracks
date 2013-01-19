@@ -10,5 +10,8 @@
 		<label for="search-mixes">Mixes</label>
 	</div>
 </form>
+<% if ( tracks.query ) { %>
 <h2>Showing results for: <i><%= tracks.query %></i></h2>
 <ul></ul>
+<a href="#" class="load-more" data-bypass>Show More</a>
+<% } %>

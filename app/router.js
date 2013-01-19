@@ -29,7 +29,7 @@ function(app, Track) {
 
     routes: {
       "": "index",
-      ":type/:query": "search"
+      ":searchType/:query": "search"
     },
 
     index: function() {
@@ -37,13 +37,16 @@ function(app, Track) {
       this.reset();
     },
 
-    search: function(type, query) {
+    search: function( searchType, query) {
 
       // Reset the state and render
       this.reset();
 
       // Set the search type
-      this.tracks.searchType = type;
+      this.tracks.searchType = searchType;
+
+      // Set the search offset
+      this.tracks.offset = 0;
 
       // Set the query term
       this.tracks.query = query;

@@ -28,6 +28,8 @@ function(app) {
         toOrFrom = "from";
       }
 
+      console.log("HOFFSET", this.offset)
+
       return [
         app.apiRoot,
         "/tracks.json",
@@ -36,7 +38,7 @@ function(app) {
         "&filter=downloadable",
         "&duration[" + toOrFrom + "]=600000",
         "&limit=5",
-        "&offset=" + (this.page - 1)
+        "&offset=" + this.offset
       ].join("");
 
     },
@@ -61,8 +63,6 @@ function(app) {
         return track;
       });
 */
-
-console.log("response", response);
 
       return response;
     }
@@ -104,26 +104,51 @@ console.log("response", response);
     },
 
     initialize: function() {
+      var that = this;
       this.listenTo(this.options.tracks, {
         "reset": this.render,
         "fetch": function() {
           this.$("ul").html("<img src='/app/img/spinner-gray.gif'>");
         }
       });
+      // Scroll events
+      /*
+      var didScroll = false;
+      $(window).scroll(function() {
+          didScroll = true;
+      });
+      setInterval(function() {
+          if ( didScroll ) {
+              didScroll = false;
+              // Check your page position and then
+              // Load in more tracks
+              if ( ( $(document).height() - $(window).height() ) - $(window).scrollTop() < 600 ) {
+                that.appendTracks();
+              }
+          }
+      }, 250);
+      */
     },
 
     events: {
-      "submit form": "doSearch"
+      "submit form": "doSearch",
+      "click .load-more": "loadMore"
     },
 
-    doSearch: function() {
+    doSearch: function( event ) {
       event.preventDefault();
       var searchType = this.$("input:radio[name=length]:checked").val(),
           queryTerm = this.$(".query").val().replace(/ /g, "+");
       app.router.go( searchType, queryTerm );
       return false;
-    }
+    },
 
+    loadMore: function(event) {
+      event.preventDefault();
+      this.options.tracks.offset = ( this.options.tracks.offset + 1 ) * 5;
+      this.options.tracks.fetch();
+    }
+    
   });
 
   // Return the module for AMD compliance.
