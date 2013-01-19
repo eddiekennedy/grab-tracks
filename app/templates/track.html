@@ -3,7 +3,14 @@
 </div>
 <div class="track-content">
 	<div class="track-info">
-		<%= track.get("user").username %><br/> <%= track.get('title') %>
+		<h3>
+			<span class="artist-name">
+				<a href="<%= track.get("user").username %>"><%= track.get("user").username %></a>
+			</span>
+			<span class="track-title">
+				<%= track.get('title') %>
+			</span>
+		</h3>
 	</div>
 	<div class="player">
 		<i class="loading-player">Loading player...</i>
@@ -30,8 +37,10 @@
 		</ul>
 		<% } %>
 	</div>
-	<div class="tags">
-		<h4>Tags:</h4>
-		<p><%= track.get("tag_list") %></p>
-	</div>
+	<% if ( track.get("tag_list") != '') { %>
+		<div class="tags">
+			<h4>Tags:</h4>
+			<p><%= track.get("tag_list") %></p>
+		</div>
+	<% } %>
 </div>

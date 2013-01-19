@@ -3,10 +3,14 @@
 @import "../../vendor/h5bp/css/normalize.css";
 @import "../../vendor/h5bp/css/main.css";
 
+/*-- Web fonts. -----------------------------------------------------*/
+
+@import url(http://fonts.googleapis.com/css?family=Lato:300,900);
+
 /*-- Application stylesheets. -----------------------------------------------*/
 body{ 
 	background: #eee;
-	font-family: verdana;
+	font-family: 'Lato', sans-serif;
 }
 .header,
 .content {
@@ -30,7 +34,12 @@ h1 {
 h2 {
 	margin: 0;
 	font-size: 1.2em;
-	font-weight: 100;
+}
+h3 {
+	text-transform: uppercase
+}
+h3 span {
+	display: block;
 }
 ul {
 	padding: 0;
@@ -48,7 +57,12 @@ li:last-child {
 	border-bottom: none;
 	margin-bottom: 0;
 }
-
+a {
+	color: #f33;
+}
+a:hover {
+	text-decoration: none;
+}
 /* Header */
 .header {
 	text-align: center;
@@ -79,7 +93,7 @@ li:last-child {
 	border: 1px solid #ccc;
 	padding: 10px;
 	font-size: 1.6em;
-	font-weight: 100;
+	font-weight: 300;
 }
 .filter-input {
 	width: 20c%;
