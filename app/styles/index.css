@@ -9,11 +9,13 @@ body{
 	font-family: verdana;
 }
 .header,
-.search-form,
-.query,
-.tracks {
+.content {
 	padding: 0 3%;
 	background: #fff;
+}
+.content > div {
+	max-width: 1200px;
+	margin: 0 auto
 }
 .header {
 	margin-bottom: .5em;
