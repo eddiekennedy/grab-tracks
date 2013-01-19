@@ -1,9 +1,8 @@
-<form id="search">
-	<div class="form-section">
-		<input type="text" class="query" name="query" placeholder="Search" />
+<form class="search-form">
+	<div class="form-section search-input">
+		<input type="text" class="query" name="query" placeholder="Search Tracks" />
 	</div>
-	<div class="form-section">
-		Search for:
+	<div class="form-section filter-input">
 		<input type="radio" name="length" class="track-length" id="search-tracks" value="t" checked />
 		<label for="search-tracks">Tracks</label>
 		<input type="radio" name="length" class="track-length" id="search-mixes" value="m" />
@@ -11,7 +10,9 @@
 	</div>
 </form>
 <% if ( tracks.query ) { %>
-<h2>Showing results for: <i><%= tracks.query %></i></h2>
-<ul></ul>
-<a href="#" class="load-more" data-bypass>Show More</a>
+<h2 class="query">Showing results for: <i><%= tracks.query %></i></h2>
+<ul class="tracks"></ul>
+<div class="pagination">
+	<a href="#" class="load-more" data-bypass>Show More</a>
+</div>
 <% } %>

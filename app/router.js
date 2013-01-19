@@ -22,7 +22,7 @@ function(app, Track) {
 
       // Use main layout and set Views.
       app.useLayout("main-layout").setViews({
-        ".tracks": new Track.Views.List(collections)
+        ".content": new Track.Views.List(collections)
       }).render();
 
     },

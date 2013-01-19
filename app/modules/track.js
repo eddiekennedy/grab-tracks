@@ -28,8 +28,6 @@ function(app) {
         toOrFrom = "from";
       }
 
-      console.log("HOFFSET", this.offset)
-
       return [
         app.apiRoot,
         "/tracks.json",
@@ -37,32 +35,29 @@ function(app) {
         "&q=" + this.query,
         "&filter=downloadable",
         "&duration[" + toOrFrom + "]=600000",
-        "&limit=5",
+        "&limit=10",
         "&offset=" + this.offset
       ].join("");
 
     },
 
     parse: function(response) {
-/*
+
       response = _.each( response, function( track ){
         // Set track indexNum for navigation
         track.indexNum = response.indexOf(track);
         // Set title for thumbnail
         track.titleAttr = track.user.username + " | " + track.title;
         if ( track.artwork_url ) {
-          // Save tiny version for thumbnail
-          track.icon = track.artwork_url.replace( "large", "tiny" );
           // Replace default image artwork url with larger version
           track.artwork_url = track.artwork_url.replace( "large", "t500x500" );
         } else {
           // Default whitelabel image
-          track.icon = "/assets/images/white-label-thumb.png";
-          track.artwork_url = "/assets/images/white-label.jpg";
+          track.icon = "/app/images/white-label-thumb.png";
+          track.artwork_url = "/app/images/white-label.jpg";
         }
         return track;
       });
-*/
 
       return response;
     }
@@ -97,7 +92,7 @@ function(app) {
 
     beforeRender: function() {
       this.options.tracks.each(function(track) {
-        this.insertView("ul", new Track.Views.Item({
+        this.insertView("ul.tracks", new Track.Views.Item({
           model: track
         }));
       }, this);
@@ -108,7 +103,7 @@ function(app) {
       this.listenTo(this.options.tracks, {
         "reset": this.render,
         "fetch": function() {
-          this.$("ul").html("<img src='/app/img/spinner-gray.gif'>");
+          this.$("ul.tracks").html("<div class='loading'><img src='/app/images/loading.gif'></div>");
         }
       });
       // Scroll events
@@ -145,10 +140,10 @@ function(app) {
 
     loadMore: function(event) {
       event.preventDefault();
-      this.options.tracks.offset = ( this.options.tracks.offset + 1 ) * 5;
+      this.options.tracks.offset = ( this.options.tracks.offset + 1 ) * 10;
       this.options.tracks.fetch();
     }
-    
+
   });
 
   // Return the module for AMD compliance.
