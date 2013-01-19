@@ -106,9 +106,8 @@ console.log("response", response);
     initialize: function() {
       this.listenTo(this.options.tracks, {
         "reset": this.render,
-
         "fetch": function() {
-          this.$("ul").parent().html("<img src='/app/img/spinner-gray.gif'>");
+          this.$("ul").html("<img src='/app/img/spinner-gray.gif'>");
         }
       });
     },
@@ -119,8 +118,8 @@ console.log("response", response);
 
     doSearch: function() {
       event.preventDefault();
-      var searchType = this.$('input:radio[name=length]:checked').val();
-      var queryTerm = this.$(".query").val().replace(/ /g, "+");
+      var searchType = this.$("input:radio[name=length]:checked").val(),
+          queryTerm = this.$(".query").val().replace(/ /g, "+");
       app.router.go( searchType, queryTerm );
       return false;
     }
