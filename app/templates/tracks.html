@@ -1,6 +1,13 @@
 <form id="search">
 	<div class="form-section">
-		<input type="text" class="query" placeholder="Search SoundCloud for downloadable tracks" />
+		<input type="text" class="query" placeholder="Search" />
+	</div>
+	<div class="form-section">
+		Search for:
+		<input type="radio" name="length" class="track-length" value=">" checked />
+		<label for="track-length">Tracks</label>
+		<input type="radio" name="length" class="track-length" value="<" />
+		<label for="track-length">Mixes</label>
 	</div>
 </form>
 <h2>Showing results for: <i><%= tracks.query %></i></h2>
