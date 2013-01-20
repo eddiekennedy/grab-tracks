@@ -82,26 +82,42 @@ a:hover {
 .search-form {
 	padding-top: 1em;
 	padding-bottom: 1em;
-	overflow: auto;
-}
-.search-input {
-	width: 80%;
-	float: left;
+	color: #ccc;
+	font-weight: 100;
 }
 .search-input input {
-	width: 89%;
+	width: 95.5%;
 	border: 1px solid #ccc;
-	padding: 10px;
+	padding: .3em 2%;
 	font-size: 1.6em;
 	font-weight: 300;
+	background: url(../images/glyphicons_027_search.png) no-repeat 98% center;
+	border-radius: 2px;
+}
+::-webkit-input-placeholder {
+   color: #ccc;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: #ccc;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #ccc;  
+}
+:-ms-input-placeholder {  
+   color: #ccc;  
 }
 .filter-input {
-	width: 20c%;
-	float: right;
-	text-align: right;
-	font-size: 1.6em;
-	font-weight: 100;
-	color: #ccc;
+	font-size: 1.2em;
+	padding-top: .3em;
+}
+.filter-input label {
+	margin-left: 3px;
+	margin-right: 20px;
+}
+.filter-input input {
+	position: relative;
+	top: -3px;
+	margin-left: 3px;
 }
 
 
