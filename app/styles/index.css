@@ -51,6 +51,7 @@ a:hover {
 }
 .content {
 	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 .content > div {
 	max-width: 1200px;
@@ -86,13 +87,14 @@ h1 {
 */
 .search-form {
 	padding-top: 1em;
-	padding-bottom: 1em;
+	padding-bottom: .5em;
 	color: #ccc;
 	font-weight: 100;
 }
 /* Search input */
 .search-input {
-	border: 1px solid #ccc;
+	border: 1px solid #666;
+	border-radius: 2px;
 }
 .search-input input {
 	width: 96%;
@@ -101,7 +103,6 @@ h1 {
 	font-size: 1.6em;
 	font-weight: 300;
 	background: url(../images/glyphicons_027_search.png) no-repeat 98% center;
-	border-radius: 2px;
 }
 ::-webkit-input-placeholder { color: #ccc; }
 :-moz-placeholder { color: #ccc; }
