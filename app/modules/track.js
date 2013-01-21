@@ -43,6 +43,8 @@ function(app) {
 
     parse: function(response) {
 
+      var that = this;
+
       response = _.each( response, function( track ){
         // Set track indexNum for navigation
         track.indexNum = response.indexOf(track);
@@ -56,6 +58,20 @@ function(app) {
           track.icon = "/app/images/white-label-thumb.png";
           track.artwork_url = "/app/images/white-label.jpg";
         }
+
+        // Build the list of tag links into an html string
+        var tagArray = track.tag_list.match(/\w+|"(?:\\"|[^"])+"/g),
+            tagMarkup = "";
+            console.log("TAG ARRAY", tagArray);
+        if ( tagArray ) {
+          for ( var i = 0; i < tagArray.length; i++ ) {
+            var cleanTag = tagArray[i];
+            cleanTag = cleanTag.replace( /"/g, "" );
+            tagMarkup += '<a href="' + that.searchType + '/' + cleanTag + '">' + cleanTag + '</a> ';
+          }
+          track.tag_list = tagMarkup;
+        }
+
         return track;
       });
 
