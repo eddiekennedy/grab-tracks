@@ -67,7 +67,7 @@ function(app) {
           for ( var i = 0; i < tagArray.length; i++ ) {
             var cleanTag = tagArray[i];
             cleanTag = cleanTag.replace( /"/g, "" );
-            tagMarkup += '<a href="' + that.searchType + '/' + cleanTag + '">' + cleanTag + '</a> ';
+            tagMarkup += '<li><a href="' + that.searchType + '/' + cleanTag + '">' + cleanTag + '</a></li>';
           }
           track.tag_list = tagMarkup;
         }

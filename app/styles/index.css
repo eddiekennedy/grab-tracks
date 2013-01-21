@@ -7,39 +7,19 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lato:300,900);
 
+
+/* Clearfix */
+/* j.mp/bestclearfix */
+li:after {
+	clear: both; content: "\0020"; display: block; height: 0; visibility: hidden;
+}
+
 /*-- Application stylesheets. -----------------------------------------------*/
+
+/* Base element styles */
 body{ 
 	background: #eee;
 	font-family: 'Lato', sans-serif;
-}
-.header,
-.content {
-	padding: 0 3%;
-	background: #fff;
-}
-.content > div {
-	max-width: 1200px;
-	margin: 0 auto
-}
-.header {
-	margin-bottom: .5em;
-	padding: 1em 0;
-}
-h1 {
-	margin: 0;
-	font-size: 1.2em;
-	text-transform: uppercase;
-	letter-spacing: -1px;
-}
-h2 {
-	margin: 0;
-	font-size: 1.2em;
-}
-h3 {
-	text-transform: uppercase
-}
-h3 span {
-	display: block;
 }
 ul {
 	padding: 0;
@@ -49,25 +29,49 @@ ul {
 li {
 	padding-bottom: 2em;
 	margin-bottom: 2em;
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #ccc;
 	clear: both;
-	overflow: auto;
 }
 li:last-child {
 	border-bottom: none;
 	margin-bottom: 0;
 }
 a {
-	color: #f33;
-}
-a:hover {
+	color: #5350c2;
 	text-decoration: none;
 }
-/* Header */
-.header {
-	text-align: center;
+a:hover {
+	text-decoration: underline;
+}
+/* Container widths */
+.header,
+.content {
+	padding: 0 3%;
+	background: #fff;
+}
+.content {
+	border-top: 1px solid #ccc;
+}
+.content > div {
+	max-width: 1200px;
+	margin: 0 auto
 }
 
+/* 
+##	Header
+*/
+.header {
+	margin-bottom: .5em;
+	padding: 1em 0;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+h1 {
+	margin: 0;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+}
 .headphones {
 	background: url(../images/glyphicons_076_headphones.png) no-repeat bottom center;
 	display: block;
@@ -77,14 +81,16 @@ a:hover {
 	margin-bottom: .3em;
 }
 
-
-/* Search Form */
+/* 
+##	Search Form
+*/
 .search-form {
 	padding-top: 1em;
 	padding-bottom: 1em;
 	color: #ccc;
 	font-weight: 100;
 }
+/* Search input */
 .search-input input {
 	width: 95.5%;
 	border: 1px solid #ccc;
@@ -94,18 +100,11 @@ a:hover {
 	background: url(../images/glyphicons_027_search.png) no-repeat 98% center;
 	border-radius: 2px;
 }
-::-webkit-input-placeholder {
-   color: #ccc;
-}
-:-moz-placeholder { /* Firefox 18- */
-   color: #ccc;  
-}
-::-moz-placeholder {  /* Firefox 19+ */
-   color: #ccc;  
-}
-:-ms-input-placeholder {  
-   color: #ccc;  
-}
+::-webkit-input-placeholder { color: #ccc; }
+:-moz-placeholder { color: #ccc; }
+::-moz-placeholder { color: #ccc; }
+:-ms-input-placeholder { color: #ccc; }
+/* Search filters */
 .filter-input {
 	font-size: 1.2em;
 	padding-top: .3em;
@@ -119,45 +118,45 @@ a:hover {
 	top: -3px;
 	margin-left: 3px;
 }
-
-
-.query {
-	padding-top: 1em;
-	padding-bottom: 1em;
-	xborder-bottom: 1px solid #ccc;
-	xborder-top: 1px solid #ccc;
+/* Query status */
+h2 {
+	margin: 0;
+	font-size: 1.2em;
+	font-weight: 300;
 }
 
-.loading {
-	text-align: center;
-	padding: 2em 0 8em 0;
-}
-
+/* 
+##	Track List
+*/
 .tracks {
-	padding-top: 2em;
+	xpadding-top: 2em;
 }
-.track-artwork {
-	width: 32%;
-	float:left;
-}
-.track-artwork img {
+.tracks img {
 	width: 100%;
 	max-width: 100%;
 }
-
+.track-artwork {
+	xwidth: 32%;
+	xfloat:left;
+}
 .track-content {
-	width: 66%;
-	float: left;
-	margin-left: 2%;
+	xwidth: 66%;
+	xfloat: left;
+	xmargin-left: 2%;
 }
-.buttons li {
-	display: inline-block;
+/* Track artist & title */
+h3 {
 	margin: 0;
-	padding: 0;
-	border: none;
-	
+	text-transform: uppercase;
+	line-height: 1.2em;
 }
-
+h3 span {
+	display: block;
+}
+.track-title {
+	font-weight: 300;
+}
+/* Player */
 .player {
 	position: relative;
 }
@@ -172,9 +171,96 @@ a:hover {
 	z-index: 5;
 	color: #ddd;
 }
-
+/* Buttons */
+.buttons li {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	border: none;	
+}
+.button {
+    color: #6e6e6e;
+    text-decoration: none;
+    padding: 3px 8px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-transition: border-color .218s;
+    -moz-transition: border .218s;
+    -o-transition: border-color .218s;
+    transition: border-color .218s;
+    background: #eeeeee;
+    background: -webkit-gradient(linear,0% 40%,0% 70%,from(#F5F5F5),to(#F1F1F1));
+    background: -moz-linear-gradient(linear,0% 40%,0% 70%,from(#F5F5F5),to(#F1F1F1));
+    border: solid 1px #dcdcdc;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    margin-right: 10px;
+}
+.button:hover {
+    color: #333;
+    border-color: #bbb;
+    -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15) -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+}
+.button.download {
+	background-image: url(../images/glyphicons_200_download.png);
+	background-repeat: no-repeat;
+	background-position: 8px center;
+	background-size: 20px 20px;
+	padding-left: 32px;
+}
+.button.buy {
+	background-image: url(../images/glyphicons_202_shopping_cart.png);
+	background-repeat: no-repeat;
+	background-position: 8px center;
+	background-size: 20px 20px;
+	padding-left: 32px;
+}
+/* Tags */
+h4 {
+	margin: 0;
+	margin-right: 5px;
+	display: inline-block;
+	font-weight: 300;
+}
+.tag-list {
+	display: inline-block;
+}
+.tag-list li {
+	display: inline-block;
+	margin: 0;
+	margin-right: 5px;
+	padding: 0;
+	border: none;
+}
+/* Pagination link */
 .pagination {
 	text-align: center;
 	padding-top: 2em;
 	padding-bottom: 2em;
+}
+/* Loading graphic */
+.loading {
+	text-align: center;
+	padding: 2em 0 8em 0;
+}
+@media screen and (min-width: 500px) {
+	/* 
+	##	Track List
+	*/
+	.tracks {
+		xpadding-top: 2em;
+	}
+	.track-artwork {
+		width: 32%;
+		float:left;
+	}
+	.track-content {
+		width: 66%;
+		float: left;
+		margin-left: 2%;
+	}
 }

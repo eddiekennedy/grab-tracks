@@ -25,13 +25,13 @@
 			</li>
 		<% } else { %>
 			<li>
-				<a href="<%= track.get("download_url") %>" class="" data-bypass>Download</a>
+				<a href="<%= track.get("download_url") %>" class="button download" data-bypass>Download</a>
 			</li>
 		<% } %>
 		<% if ( track.get("purchase_url") != null) { %>
 			<li>
 				<li>
-					<a href="<%= track.get("purchase_url") %>" class="">Buy</a>
+					<a href="<%= track.get("purchase_url") %>" class="button buy">Buy</a>
 				</li>
 			</li>
 		</ul>
@@ -40,7 +40,9 @@
 	<% if ( track.get("tag_list") != '') { %>
 		<div class="tags">
 			<h4>Tags:</h4>
-			<p><%= track.get("tag_list") %></p>
+			<ul class="tag-list">
+				<%= track.get("tag_list") %>
+			</ul>
 		</div>
 	<% } %>
 </div>
