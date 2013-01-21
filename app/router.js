@@ -52,7 +52,16 @@ function(app, Track) {
       this.tracks.query = query;
 
       // Fetch the data
-      this.tracks.fetch();
+      this.tracks.fetch({
+        error: function() {
+          var errorMessage = [
+            '<p class="error">',
+              'There was a problem fetching data from SoundCloud, please reload the page to try again</a>.',
+            '<p>'
+          ].join("");
+          $(".big-time").html( errorMessage );
+        }
+      });
 
     },
 

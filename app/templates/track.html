@@ -4,11 +4,11 @@
 <div class="track-content">
 	<div class="track-info">
 		<h3>
-			<span class="artist-name">
-				<a href="<%= track.get("user").username %>"><%= track.get("user").username %></a>
-			</span>
 			<span class="track-title">
 				<%= track.get('title') %>
+			</span>
+			<span class="artist-name">
+				<a href="<%= track.get("user").username %>"><%= track.get("user").username %></a>
 			</span>
 		</h3>
 	</div>
@@ -20,8 +20,7 @@
 		<ul>
 		<% if ( track.get("downloadable") == false) { %>
 			<li class="try-again">
-				<p>This track is no longer available for direct download.</p>
-				<p>Check the <a href="<%= track.get("permalink_url") %>" data-bypass>track's page</a> for a link.</p>
+				<em>Download no longer available. Check the <a href="<%= track.get("permalink_url") %>" data-bypass>track's page</a> for a link.</em>
 			</li>
 		<% } else { %>
 			<li>
@@ -39,7 +38,6 @@
 	</div>
 	<% if ( track.get("tag_list") != '') { %>
 		<div class="tags">
-			<h4>Tags:</h4>
 			<ul class="tag-list">
 				<%= track.get("tag_list") %>
 			</ul>
