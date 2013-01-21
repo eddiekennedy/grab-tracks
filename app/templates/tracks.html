@@ -12,8 +12,10 @@
 <% if ( tracks.query ) { %>
 <div class="big-time">
 	<ul class="tracks"></ul>
-	<div class="pagination">
-		<a href="#" class="load-more button" data-bypass>More Results</a>
-	</div>
+	<% if ( tracks.length ) { %>
+		<div class="pagination">
+			<a href="#" class="load-more button" data-bypass>More Results</a>
+		</div>
+	<% } %>
 </div>
 <% } %>
