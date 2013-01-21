@@ -8,7 +8,7 @@
 				<%= track.get('title') %>
 			</span>
 			<span class="artist-name">
-				<a href="<%= track.get("user").username %>"><%= track.get("user").username %></a>
+				<a href="<%= track.collection.searchType %>/<%= track.get("user").username %>"><%= track.get("user").username %></a>
 			</span>
 		</h3>
 	</div>

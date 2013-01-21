@@ -27,6 +27,7 @@ function(app, Router) {
 
     // Ensure the root is part of the anchor href, meaning it's relative.
     if (href.prop.slice(0, root.length) === root) {
+      console.log("FIRE");
       // Stop the default event to ensure the link will not cause a page
       // refresh.
       evt.preventDefault();

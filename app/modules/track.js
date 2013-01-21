@@ -62,7 +62,6 @@ function(app) {
         // Build the list of tag links into an html string
         var tagArray = track.tag_list.match(/\w+|"(?:\\"|[^"])+"/g),
             tagMarkup = "";
-            console.log("TAG ARRAY", tagArray);
         if ( tagArray ) {
           for ( var i = 0; i < tagArray.length; i++ ) {
             var cleanTag = tagArray[i];
@@ -88,6 +87,7 @@ function(app) {
     tagName: "li",
 
     serialize: function() {
+      console.log("THIS", this.model.collection.searchType)
       return { track: this.model };
     },
 
@@ -150,6 +150,7 @@ function(app) {
       event.preventDefault();
       var searchType = this.$("input:radio[name=length]:checked").val(),
           queryTerm = this.$(".query").val().replace(/ /g, "+");
+      this.options.tracks.query = queryTerm;
       app.router.go( searchType, queryTerm );
       return false;
     },
