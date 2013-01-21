@@ -91,10 +91,13 @@ h1 {
 	font-weight: 100;
 }
 /* Search input */
-.search-input input {
-	width: 95.5%;
+.search-input {
 	border: 1px solid #ccc;
+}
+.search-input input {
+	width: 96%;
 	padding: .3em 2%;
+	border: none;
 	font-size: 1.6em;
 	font-weight: 300;
 	background: url(../images/glyphicons_027_search.png) no-repeat 98% center;
