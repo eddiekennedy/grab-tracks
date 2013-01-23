@@ -12,10 +12,18 @@
 <% if ( tracks.query ) { %>
 <div class="big-time">
 	<ul class="tracks"></ul>
-	<% if ( tracks.length ) { %>
+	<% if ( tracks.length && tracks.length === 10) { %>
 		<div class="pagination">
 			<a href="#" class="load-more button" data-bypass>More Results</a>
 		</div>
+	<% } %>
+	<% if ( tracks.length && tracks.length < 10) { %>
+		<div class="pagination">
+			<p>End of search results.</p>
+		</div>
+	<% } %>
+	<% if ( tracks.length && tracks.length === 0 ) { %>
+		<p>Sorry there were no results. Please try your search again.</p>
 	<% } %>
 </div>
 <% } %>

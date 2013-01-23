@@ -87,7 +87,6 @@ function(app) {
     tagName: "li",
 
     serialize: function() {
-      console.log("THIS", this.model.collection.searchType)
       return { track: this.model };
     },
 
@@ -122,23 +121,6 @@ function(app) {
           this.$("ul.tracks").html("<div class='loading'><img src='/app/images/loading.gif'></div>");
         }
       });
-      // Scroll events
-      /*
-      var didScroll = false;
-      $(window).scroll(function() {
-          didScroll = true;
-      });
-      setInterval(function() {
-          if ( didScroll ) {
-              didScroll = false;
-              // Check your page position and then
-              // Load in more tracks
-              if ( ( $(document).height() - $(window).height() ) - $(window).scrollTop() < 600 ) {
-                that.appendTracks();
-              }
-          }
-      }, 250);
-      */
     },
 
     events: {

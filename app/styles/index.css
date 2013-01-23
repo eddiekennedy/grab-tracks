@@ -53,6 +53,7 @@ a:hover {
 .content {
 	border-top: 1px solid #eee;
 	border-bottom: 1px solid #eee;
+	margin-bottom: 1.5em;
 }
 .content > div {
 	max-width: 1200px;
