@@ -94,6 +94,20 @@ h1 sup {
 	margin-right: .15em;
 	margin-bottom: .3em;
 }
+.icon.info {
+	background: url(../images/glyphicons_194_circle_question_mark.png) no-repeat bottom center;
+	background-size: 20px 20px;
+	display: block;
+	width: 24px;
+	height: 24px;
+	position:absolute;
+	top: .5em;
+	right: 10px;
+	opacity: .1;
+}
+.icon.info:hover {
+	opacity: .2;
+}
 
 /* 
 ##	Search Form
