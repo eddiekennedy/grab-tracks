@@ -22,10 +22,6 @@
 			<li class="try-again">
 				<em>Download no longer available. Check the <a href="<%= track.get("permalink_url") %>" data-bypass>track's page</a> for a link.</em>
 			</li>
-		<% } else { %>
-			<li>
-				<a href="<%= track.get("download_url") %>" class="button download" data-bypass>Download</a>
-			</li>
 		<% } %>
 		<% if ( track.get("purchase_url") != null) { %>
 			<li>
